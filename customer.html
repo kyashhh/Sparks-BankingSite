@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title> </title>
+    
+    <!-- Fonts here -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"/>
+
+    <!-- MDB-->
+    <link rel="stylesheet" href="css/mdb.min.css"/>
+    <!-- AOS  -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!--Custom Styles-->
+    <link rel="stylesheet" href="css/styles.css"/>
+  </head>
+
+  <body>
+    <!-- Loader for splash screen -->
+    <div id="loading"></div>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html">The Sparks Fundation</a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav" aria-controls="navbarNav" 
+         aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Home Page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="./customer.html">Tranfer Money</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" href="https://fx-rate.net/calculator/">Currency convertor</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#footer">About us</a>
+            </li>
+          </ul><!--navbar-nav list-->
+        </div><!--.collapse .navbar-collapse end-->
+      </div><!--container ends-->
+    </nav>
+
+    <!--content-->
+    
+    <div id="mainac" class="my-info text-center">
+        
+        <h2 id="mainacinfo"> Name: Yash Kumar 
+          <p style="font-size: 0.5em; font-style: italic;">(email : yash@email.com)</p>
+          <p style="font-size: 0.6em;">Net Bank Balance: ₹<span id="myAccountBalance">100000</span></p>
+        </h2>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#sendMoney">Send Money</button>
+        <button class="btn btn-secondary" data-toggle="modal" data-target="#transactionHistory">View All Transactions</button>
+    </div>
+
+    <!-- Modal send money -->
+    <div class="modal fade" id="sendMoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Send Money</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="input-group mb-3">
+                            <input type="text" id="enterName" class="form-control" placeholder="Recipient's username"
+                                aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">@email.com</span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">₹</span>
+                            </div>
+                            <input type="text" id="enterAmount" class="form-control" placeholder=" Enter Amount" aria-label="Amount (to the nearest dollar)">
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00/-</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="sendMoney()" class="btn btn-success" data-dismiss="modal">Send Money</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal transaction History-->
+    <div class="modal fade" id="transactionHistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Transaction History</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ol id="transaction-history-body">
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- table  -->
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead id="table_topic">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">E-Mail</th>
+                        <th scope="col">Bank Balance(in ₹)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Liam Jones</td>
+                        <td>liam@email.com</td>
+                        <td>
+                            <p id="liamBankBalance">76989</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Noah</td>
+                        <td>noah12@email.com</td>
+                        <td>
+                            <p id="noah12BankBalance">71012</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Olivia Smith</td>
+                        <td>oli@email.com</td>
+                        <td>
+                            <p id="oliBankBalance">14036</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>William Brown</td>
+                        <td>williamb@email.com</td>
+                        <td>
+                            <p id="williambBankBalance">55209</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lucas Martin</td>
+                        <td>lucas7@email.com</td>
+                        <td>
+                            <p id="lucas7BankBalance">43520</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>James Miller</td>
+                        <td>jmiller@email.com</td>
+                        <td>
+                            <p id="jmillerBankBalance">77823</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Harper  Hill</td>
+                        <td>hh9@email.com</td>
+                        <td>
+                            <p id="hh9BankBalance">18342</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mia Hall</td>
+                        <td>miahall@email.com</td>
+                        <td>
+                            <p id="miahallBankBalance">19364</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Amelia</td>
+                        <td>ama@email.com</td>
+                        <td>
+                            <p id="amaBankBalance">39277</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sophia White</td>
+                        <td>sophia@email.com</td>
+                        <td>
+                            <p id="sophiaBalance">62564</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- footer starts-->
+    <footer id="footer" class="text-center text-lg-start bg-dark text-muted">
+      <!-- Section: Social media -->
+      <section class="container d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <div class="me-5 d-none d-lg-block">
+          <span>Get connected with us on social networks:</span>
+        </div>
+
+        <div>
+          <a href="https://www.facebook.com/thesparksfoundation.info" target="_blank" class="me-4 text-reset">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.thesparksfoundationsingapore.org/" target="_blank" class="me-4 text-reset">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="https://www.instagram.com/thesparksfoundation.info/" target="_blank" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/the-sparks-foundation/" target="_blank" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </section>
+      <!-- Section: Social media -->
+    
+      <!-- Section: Links  -->
+      <section>
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column  - about-->
+            <div class="col-md-5 col-lg-5 col-xl-5 mx-auto">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                <a href="https://www.thesparksfoundationsingapore.org/" target="_blank">
+                  <i class="fas fa-gem me-3"></i>The Sparks Foundation<br>
+                </a>
+                <p id="ds">Bank</p> 
+              </h6>
+              <p id="info">
+                The Sparks Foundation bank is a customer-focused bank that provides complete financial solutions to meet your entire financial needs.
+              </p>
+            </div>
+            <!-- Grid column - about -->
+    
+            <!-- Grid column - contact -->
+            <div class="col-md-5 col-lg-5 col-xl-5 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+              <p><i class="fas fa-home me-3"></i><a  target="_blank" href="https://goo.gl/maps/BAfA7RRJsVF2JG3A8">21 Heng Mui Keng Terrace, Icube Building, Singapore</a></p>
+              <p><i class="fas fa-envelope me-3"></i><a  target="_blank" href="mailto:info@thesparksfoundation.sg">info@thesparksfoundation.sg</a></p>
+              <p><i class="fas fa-phone me-3"></i><a  target="_blank" href="tel:+65 8402 8590">+65 8402 8590</a></p>
+            </div>
+            <!-- Grid column - contact -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+      <div id="disclaimer">
+        This website is the outcome of a intern project, and does not necessarily represent the views of any organisation or any other individuals referenced ar acknowledged within the website. Anyone may reproduce distribute, adapt, translate the content on the website, without explicit permission, provided that the content is accompanied by an acknowledgement that Zombie Bank website is the source and that it is clearly indicated if changes were made to the original content
+      </div>
+    
+      <!-- Copyright -->
+      <div id="copyright" class="text-center p-4">
+        © 2022 Copyright:
+        <a  target="_blank" class="text-reset fw-bold" href="https://www.linkedin.com/in/yashkumarjiit/">Yash Kumar</a>
+      </div>
+    </footer>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- AOS Data  -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 700,
+      });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
+  </body>
+</html>
